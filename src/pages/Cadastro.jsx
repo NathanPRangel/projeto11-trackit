@@ -39,17 +39,17 @@ export default function Cadastro() {
         <CadastroContainer>
             <img src={logo} alt="logo" />
             <form onSubmit={cadastrar}>
-                <input disabled={trancar? true:false} type="email" placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
-                <input disabled={trancar? true:false} type="password" placeholder="senha" onChange={(e)=>setSenha(e.target.value)}/>
-                <input disabled={trancar? true:false} type="text" placeholder="nome" onChange={(e)=>setNome(e.target.value)}/>
-                <input  disabled={trancar? true:false} placeholder="foto" onChange={(e)=>setFoto(e.target.value)}/>
-                <button disabled={trancar? true:false} type="submit">{trancar? <ThreeDots
+                <input  data-test="email-input" disabled={trancar? true:false} type="email" placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
+                <input data-test="password-input" disabled={trancar? true:false} type="password" placeholder="senha" onChange={(e)=>setSenha(e.target.value)}/>
+                <input data-test="user-name-input"  disabled={trancar? true:false} type="text" placeholder="nome" onChange={(e)=>setNome(e.target.value)}/>
+                <input data-test="user-image-input" disabled={trancar? true:false} placeholder="foto" onChange={(e)=>setFoto(e.target.value)}/>
+                <button data-test="signup-btn" disabled={trancar? true:false} type="submit">{trancar? <ThreeDots
                 height="15"
                 width="340"
                 color="white"
             />:"Cadastrar"}</button>
             </form>
-            <StyledLink to="/">
+            <StyledLink to="/" data-test="login-link">
                 <p>Já tem uma conta? Faça login!</p>
             </StyledLink>
         </CadastroContainer>

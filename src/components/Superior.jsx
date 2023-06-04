@@ -7,7 +7,7 @@ export default function Superior(){
     return(
         <ContainerSup data-test="header" >
             <span>Trackit</span>
-            <img src={usuario.image} alt="foto-usuario"/>
+            <img src={usuario.image} alt="foto-usuario" data-test="avatar"/>
         </ContainerSup>
     )
 }
