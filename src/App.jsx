@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import styled from "styled-components";
+import { LoginProvider } from "./context";
+import Cadastro from "./pages/Cadastro";
+import Habitos from "./pages/Habitos";
+import Historico from "./pages/Historico";
+import Hoje from "./pages/Hoje";
+import Home from "./pages/Home";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Tudo>
+        <LoginProvider>
+          <Routes>
+
+            <Route path="/" element={<Home />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/habitos" element={<Habitos />} />
+            <Route path="/hoje" element={<Hoje />} />
+            <Route path="/historico" element={<Historico />} />
+
+          </Routes>
+        </LoginProvider>
+      </Tudo>
+    </BrowserRouter>
+  );
 }
 
-export default App
+
+const Tudo = styled.div`
+height: 667px;
+width: 375px;
+`
