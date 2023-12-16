@@ -1,32 +1,34 @@
-import { useState } from 'react'
-import FazerLogin from './pages/FazerLogin/FazerLogin'
-import CriarLogin from './pages/CriarLogin/CriarLogin'
-import Habitos from './pages/Habitos/Habitos'
-import Hoje from './pages/Hoje/Hoje'
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Historico from './pages/Historico/Histórico'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import HomePage from "./pages/HomePage.jsx";
+import Register from "./pages/Register.jsx";
+import Habits from "./pages/Habits.jsx";
+import Today from "./pages/Today.jsx";
+import Historic from "./pages/Historic.jsx";
 
-export default function App() {
+import { UserDataProvider } from './context/UserDataContext.jsx'
+import { ProgressBarProvider } from "./context/ProgressBarContext.jsx";
 
-  const [tela1, setTela1] = useState(false);
-  const [tela2, setTela2] = useState(false);
+axios.defaults.headers.common['Authorization'] = 'QHuPiPmVdHshIxfAx1P0c7cn';
+
+
+function App() {
 
   return (
-    <>
-      <BrowserRouter>
-
-        <Routes>
-
-          <Route path="/" element={<FazerLogin />}></Route>
-          <Route path="/cadastro" element={<CriarLogin />}></Route>
-          <Route path="/habitos" element={<Habitos tela1={tela1} setTela1={setTela1} tela2={tela2} setTela2={setTela2} />}></Route>
-          <Route path="/historico" element={<Historico />}></Route>
-          <Route path="/hoje" element={<Hoje />}></Route>
-
-        </Routes>
-
-      </BrowserRouter>
-
-    </>
+    <UserDataProvider>
+      <ProgressBarProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/cadastro" element={<Register />} />
+            <Route path="/habitos" element={<Habits />} />
+            <Route path="/hoje" element={<Today />} />
+            <Route path="/historico" element={<Historic />} />
+          </Routes>
+        </BrowserRouter>
+      </ProgressBarProvider>
+    </UserDataProvider>
   )
 }
+
+export default App
